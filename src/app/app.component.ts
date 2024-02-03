@@ -25,24 +25,22 @@ export class AppComponent implements OnInit {
   tags: any;
   pagesize: any;
   pagesCount: any;
-  dataService: any;
 
   constructor(private http: HttpClient, private database: DatabaseService) {}
-
   ngOnInit(): void {
-    // this.data = this.getAllProduct();
-    this.data = this.fetchData(40, 45);
+    this.data = this.getAllProduct();
   }
 
-  fetchData(page: number, itemsPerPage: number): void {
-    this.database.getProduct(page, itemsPerPage).subscribe(
-      (data: any) => {
-        return data;
+  getAllProduct() {
+    this.database.getProduct().subscribe({
+      next: (res: any) => {
+        this.data = res.data;
+        this.total = res.total;
+        this.pagesCount = res.pagesCount;
+        console.log(this.pagesCount);
+        this.count = console.log(this.data);
       },
-      (error: any) => {
-        // Handle error
-      }
-    );
+    });
   }
 
   filterD() {

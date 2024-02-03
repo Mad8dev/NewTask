@@ -22,7 +22,7 @@
     <tbody>
       <tr
         *ngFor="
-          let word of data?.data
+          let word of data
             | search : searchText
             | paginate : { itemsPerPage: psize, currentPage: currentpage };
           let i = index
@@ -44,16 +44,8 @@
     </button>
   </table>
 
-  <!-- <div class="pagination">
-    <button (click)="changePage(currentPage - 1)" [disabled]="currentPage === 1">Previous</button>
-    <span>Page {{ currentPage }} of {{ totalPages }}</span>
-    <button (click)="changePage(currentPage + 1)" [disabled]="currentPage === totalPages">Next</button>
-  </div> -->
-
-  <!-- 
   <pagination-controls
     class="align-item-center"
     (pageChange)="currentpage = $event"
-
-  ></pagination-controls> -->
+  ></pagination-controls>
 </div>
